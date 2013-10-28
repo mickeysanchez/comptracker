@@ -1,4 +1,4 @@
-development: 
-	adapter: postgresql
-	host: localhost
-	database: comptracker_local_db
+development:
+  adapter: postgresql
+  host: localhost
+  database: mickey_rails_db
