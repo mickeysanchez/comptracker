@@ -1,2 +1,19 @@
 A app for my mom to track all the comps she gets at casinos:
 
+What to do:
+
+Models:
+
+	1. USERS -> username(email) + password (has_secure_password)
+	   has_many -> accounts
+	   
+	   create - email + password + password confirmation
+	   + email confirmation to create user
+	
+	
+	
+	 2. ACCOUNTS -> login + password (has_secure_password)
+		belongs_to -> users
+	
+		create acounts must only be available to current_user
+		
