@@ -17,3 +17,11 @@ Models:
 	
 		create acounts must only be available to current_user
 		
+		
+TODO:
+
+1. make it so signed in user can't see all users OR other users pages
+2. make model for users account
+
+
+FINISHED LAST SESH AT beginning of CHAPTER 10

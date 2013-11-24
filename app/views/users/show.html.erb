@@ -5,6 +5,7 @@
   <%= @user.email %>
 </p>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p> <%= link_to 'Sign out', signout_path, method: "delete" %>
+<p> <%= link_to 'add casino accounts', "#" %> </p>
+<!-- <p> <%= link_to 'manage email settings', "#" %> </p> -->
+<p> <%= link_to 'delete my account', @user, method: "destroy", data: {confirm: "Are you sure?"} %> </p>
