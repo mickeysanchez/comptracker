@@ -16,18 +16,16 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :remember_token %><br>
-    <%= f.text_field :remember_token %>
+    <%= f.label :password_confirmation, "Confim Password" %><br>
+    <%= f.password_field :password_confirmation %>
   </div>
-  <div class="field">
-    <%= f.label :admin %><br>
-    <%= f.check_box :admin %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+  
 <% end %>
