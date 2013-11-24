@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Comptracker::Application.config.secret_key_base = '4f21e0053536b655cefd79582be2dfb62911d4266b53dcb8a68e72621e8fa2cfb205520355651c958b3ec22a6eb4558258ef2e27518c2bd90ede7895e80a5680'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Comptracker::Application.config.secret_key_base = secure_token
