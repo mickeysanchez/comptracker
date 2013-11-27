@@ -1,11 +1,29 @@
-<p id="notice"><%= notice %></p>
+<p> <%= flash[:error] %> </p>
 
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
 
+<p>
+	<strong>Accounts:</strong>
+</p>
+
+
+<% if @accounts.empty? %>
+  <p>
+    <%= "No accounts yet. Add some!" %>
+  </p>
+<% else %>
+  <% @accounts.each do |account| %>
+     <p> Account Type: <%= account.type_of_account%>
+		 Username: <%= account.username %>
+	     Password: <%= account.password_digest%> 
+	 	 <%= link_to '<< Delete this account', account, method: :destroy, data: {confirm: "Delete this account?"} %></p>
+  <% end %>
+<% end %>
+
+<p> ---- </p>
+<p> <%= link_to 'Add casino account', new_account_path %> </p>
 <p> <%= link_to 'Sign out', signout_path, method: "delete" %>
-<p> <%= link_to 'add casino accounts', "#" %> </p>
-<!-- <p> <%= link_to 'manage email settings', "#" %> </p> -->
-<p> <%= link_to 'delete my account', @user, method: "destroy", data: {confirm: "Are you sure?"} %> </p>
+<p> <%= link_to 'Delete my account', @user, method: :destroy, data: {confirm: "Are you sure?"} %> </p>

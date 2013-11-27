@@ -1,0 +1,36 @@
+<%= form_for(@account) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+	
+	
+  <% end %>
+
+  <div class="field">
+	<%= f.label :type_of_account %> <br>
+    <%= f.select :type_of_account, options_for_select(["Total Rewards", "Borgata Rewards", "Player's Club Card", "Resorts Club Card", "Revel Rewards", "Trop Advantage", "Trump One"], :selected => @account.type_of_account) %> 
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password_digest %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm Password" %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
