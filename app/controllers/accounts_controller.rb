@@ -57,7 +57,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url }
+      format.html { redirect_to current_user }
       format.json { head :no_content }
     end
   end
@@ -70,6 +70,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:username, :password_digest)
+      params.require(:account).permit(:type_of_account, :username, :password_digest)
     end
 end

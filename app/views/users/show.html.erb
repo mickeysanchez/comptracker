@@ -19,11 +19,12 @@
      <p> Account Type: <%= account.type_of_account%>
 		 Username: <%= account.username %>
 	     Password: <%= account.password_digest%> 
-	 	 <%= link_to '<< Delete this account', account, method: :destroy, data: {confirm: "Delete this account?"} %></p>
+	 	 <%= link_to '<< Delete this account', account, :method=>:delete, :class=>:destroy, data: {confirm: "Delete this account?"} %></p>
   <% end %>
 <% end %>
 
 <p> ---- </p>
 <p> <%= link_to 'Add casino account', new_account_path %> </p>
 <p> <%= link_to 'Sign out', signout_path, method: "delete" %>
-<p> <%= link_to 'Delete my account', @user, method: :destroy, data: {confirm: "Are you sure?"} %> </p>
+<p> <%= link_to 'Delete my account', current_user, :method=>:delete, :class=>:destroy, data: {confirm: "Are you sure?"} %>
+ </p>

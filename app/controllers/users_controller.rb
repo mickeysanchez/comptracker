@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: :show
   before_action :correct_user, only: :show
-  before_action :admin_user, only: :destroy
   
   # GET /users
   # GET /users.json
@@ -33,6 +32,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         sign_in @user
+        
+        UserMailer.welcome_email(@user).deliver
+        
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
@@ -72,7 +74,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
     
-
     
     def correct_user
       @user = User.find(params[:id])
