@@ -1,3 +1,8 @@
+require 'open-uri'
+require 'mechanize'
+require 'watir-webdriver'
+require 'headless'
+
 class UsersController < ApplicationController
   before_action :signed_in_user, only: :show
   before_action :correct_user, only: :show
@@ -13,6 +18,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @accounts = @user.accounts
+    
+    headless = Headless.new
+    headless.start
+    browser = Watir::Browser.start "http://www.totalrewards.com/e-totalrewards/?"
+    @part = browser.title
+    browser.close
+    headless.destroy
   end
 
   # GET /users/new
