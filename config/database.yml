@@ -2,3 +2,5 @@ development:
   adapter: postgresql
   host: localhost
   database: comptracker_local_db
+
+

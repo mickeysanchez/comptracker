@@ -19,12 +19,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @accounts = @user.accounts
     
-    headless = Headless.new
-    headless.start
-    browser = Watir::Browser.start "http://www.totalrewards.com/e-totalrewards/?"
-    @part = browser.title
-    browser.close
-    headless.destroy
+    # headless = Headless.new
+    # headless.start
+    # browser = Watir::Browser.start "http://www.totalrewards.com/e-totalrewards/?"
+    # @part = browser.title
+    # browser.close
+    # headless.destroy
+    
+    @part = "butt"
   end
 
   # GET /users/new
