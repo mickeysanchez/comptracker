@@ -1,2 +1,2 @@
 https://github.com/heroku/heroku-buildpack-ruby.git
-https://github.com/douglasjsellers/heroku-xvfb-buildpack
+http://github.com/douglasjsellers/heroku-xvfb-buildpack
