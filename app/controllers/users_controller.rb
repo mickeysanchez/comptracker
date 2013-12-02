@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     browser.close
     headless.destroy
     
-    @part = "butt"
+    # @part = "butt"
   end
 
   # GET /users/new
