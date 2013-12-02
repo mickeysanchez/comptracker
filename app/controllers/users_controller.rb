@@ -20,14 +20,17 @@ class UsersController < ApplicationController
     @accounts = @user.accounts
     
     browser = Watir::Browser.new 
- 
+    headless = Headless.new
+    headless.start
     browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
     browser.input(:id => "username").to_subtype.set 'sssanz'
     browser.input(:id => "pin").to_subtype.set 'Penny=12'
     browser.button(:value => "Sign In").click
+   
     @part = browser.title
 
-    
+    browser.close
+    headless.destroy
     
     
     # @part = "butt"
