@@ -19,9 +19,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @accounts = @user.accounts
     
-    browser = Watir::Browser.new 
-    headless = Headless.new
-    headless.start
+    browser = Watir::Browser.new :phantomjs
+   
+    
     browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
     browser.input(:id => "username").to_subtype.set 'sssanz'
     browser.input(:id => "pin").to_subtype.set 'Penny=12'
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
     @part = browser.title
 
     browser.close
-    headless.destroy
     
     
     # @part = "butt"
