@@ -184,4 +184,5 @@ DEPENDENCIES
   turbolinks (= 1.1.1)
   uglifier (= 2.1.1)
   watir
+  watir-webdriver
   will_paginate (= 3.0.4)
