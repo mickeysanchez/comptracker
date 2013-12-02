@@ -13,6 +13,7 @@ gem 'mechanize', '2.7.2'
 gem 'watir'
 gem 'watir-webdriver'
 gem 'headless'
+gem 'phantomjs'
 
 
 # Use ActiveModel has_secure_password
