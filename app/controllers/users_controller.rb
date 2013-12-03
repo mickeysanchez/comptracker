@@ -1,7 +1,6 @@
-require 'open-uri'
-require 'mechanize'
+
 require 'watir-webdriver'
-require 'headless'
+
 
 class UsersController < ApplicationController
   before_action :signed_in_user, only: :show
@@ -19,20 +18,22 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @accounts = @user.accounts
     
-    browser = Watir::Browser.new :phantomjs
-   
     
-    browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
-    browser.input(:id => "username").to_subtype.set 'sssanz'
-    browser.input(:id => "pin").to_subtype.set 'Penny=12'
-    browser.button(:value => "Sign In").click
-   
-    @part = browser.title
+    total_rewards_account = @accounts.find_by(:type_of_account => "Total Rewards")
+    
+    
+    browser = Watir::Browser.new :phantomjs
 
+    browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
+    browser.input(:id => "username").to_subtype.set(total_rewards_account.username)
+    browser.input(:id => "pin").to_subtype.set(total_rewards_account.password_digest)
+    browser.button(:value => "Sign In").click
+    browser.link(:href => "/TotalRewards/Offers.do?", :text => "Your Offers").click
+    
+    @part = browser.span(:id => "myOffers_lblMyOffersDisplayTotal").text
+    
     browser.close
     
-    
-    # @part = "butt"
   end
 
   # GET /users/new
