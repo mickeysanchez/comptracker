@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       browser.input(:id => "username").to_subtype.set(total_rewards_account.username)
       browser.input(:id => "pin").to_subtype.set(total_rewards_account.password_digest)
       browser.button(:value => "Sign In").click
-      browser.link(:href => "/TotalRewards/Offers.do?".click
+      browser.link(:href => "/TotalRewards/Offers.do?").click
       @part = browser.frame(:id => "offerDisplayMod_iframe").div(:class => "expwidth").when_present.text
       browser.close
       
