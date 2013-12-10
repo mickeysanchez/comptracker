@@ -16,25 +16,26 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @accounts = @user.accounts
     
+    if @accounts.count > 0
+      total_rewards_account = @accounts.find_by(:type_of_account => "Total Rewards")
     
-    total_rewards_account = @accounts.find_by(:type_of_account => "Total Rewards")
+      capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1468.0 Safari/537.36")
+      driver = Selenium::WebDriver.for :phantomjs, :desired_capabilities => capabilities
+      browser = ::Watir::Browser.new driver
     
-    capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1468.0 Safari/537.36")
-    driver = Selenium::WebDriver.for :phantomjs, :desired_capabilities => capabilities
-    browser = ::Watir::Browser.new driver
-    
-    # browser = Watir::Browser.new :phantomjs
+      # browser = Watir::Browser.new :phantomjs
 
-    browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
-    browser.input(:id => "username").to_subtype.set(total_rewards_account.username)
-    browser.input(:id => "pin").to_subtype.set(total_rewards_account.password_digest)
-    browser.button(:value => "Sign In").click
-    browser.link(:href => "/TotalRewards/Offers.do?", :text => "Your Offers").click
+      browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
+      browser.input(:id => "username").to_subtype.set(total_rewards_account.username)
+      browser.input(:id => "pin").to_subtype.set(total_rewards_account.password_digest)
+      browser.button(:value => "Sign In").click
+      browser.link(:href => "/TotalRewards/Offers.do?", :text => "Your Offers").click
     
-    browser.screenshot.save 'screenshot.png'
-    @part = browser.frame(:id => "offerDisplayMod_iframe").div(:class => "expwidth").when_present.text
+      browser.screenshot.save 'screenshot.png'
+      @part = browser.frame(:id => "offerDisplayMod_iframe").div(:class => "expwidth").when_present.text
     
-    browser.close
+      browser.close
+    end
     
   end
 
