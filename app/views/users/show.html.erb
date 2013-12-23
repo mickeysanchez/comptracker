@@ -30,16 +30,33 @@
 
 <p> ---- </p>
 
-<div>
-	<strong>Offers available at Harrah's, Bally's, Caesars, or Showboat:</strong> 
-</div>
-
-<% @offers.each do |key, value| %> 
+<% if @total_rewards_comps != nil %>
 	<div>
-		<%= "#{key}  :: Expires in #{value} days." %>
-
+		<strong>Comps available at Harrah's, Bally's, Caesars, or Showboat:</strong> 
 	</div>
-<% end %>
+
+	<% @total_rewards_comps.each do |key, value| %> 
+		<div>
+			<%= "#{key}  :: Expires in #{value} days." %>
+
+		</div>
+	<% end %>
+	
+<%end%>
+
+<% if @borgata_comps != nil %>
+	<div>
+		<strong>Comps available at Borgata:</strong> 
+	</div>
+
+	<% @borgata_comps.each do |key, value| %> 
+		<div>
+			<%= "#{key}  :: Expires in #{value} days." %>
+
+		</div>
+	<% end %>
+	
+<%end%>
 
 <p> ---- </p>
 

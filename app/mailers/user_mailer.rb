@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "reminder@comptracker.com"
+  default from: "app18973717@heroku.com"
   
   def welcome_email(user)
     @user = user  
