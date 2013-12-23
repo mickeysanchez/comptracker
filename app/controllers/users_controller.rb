@@ -1,4 +1,6 @@
 require 'watir-webdriver'
+require 'date'
+require 'time'
 
 class UsersController < ApplicationController
   before_action :signed_in_user, only: :show
@@ -17,21 +19,48 @@ class UsersController < ApplicationController
     @accounts = @user.accounts
     
     if @accounts.count > 0
-      total_rewards_account = @accounts.find_by(:type_of_account => "Total Rewards")
+      
+      # scrape Total Rewards if the user has entered a Total Rewards Account
+      if @accounts.find_by(:type_of_account => "Total Rewards")
+        total_rewards_account = @accounts.find_by(:type_of_account => "Total Rewards")
     
-      capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1468.0 Safari/537.36")
-      driver = Selenium::WebDriver.for :phantomjs, :desired_capabilities => capabilities
-      browser = ::Watir::Browser.new driver
-    
-      # browser = Watir::Browser.new :phantomjs
-
-      browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
-      browser.input(:id => "username").to_subtype.set(total_rewards_account.username)
-      browser.input(:id => "pin").to_subtype.set(total_rewards_account.password_digest)
-      browser.button(:value => "Sign In").click
-      browser.link(:href => "/TotalRewards/Offers.do?", :text => "Your Offers").click
-      @part = browser.frame(:id => "offerDisplayMod_iframe").div(:class => "expwidth").when_present.text
-      browser.close
+        capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1468.0 Safari/537.36")
+        driver = Selenium::WebDriver.for :phantomjs, :desired_capabilities => capabilities
+        browser = ::Watir::Browser.new driver
+        
+        # get to offers page
+        browser.goto  "http://www.totalrewards.com/e-totalrewards/?"
+        browser.input(:id => "username").to_subtype.set(total_rewards_account.username)
+        browser.input(:id => "pin").to_subtype.set(total_rewards_account.password_digest)
+        browser.button(:value => "Sign In").click
+        browser.link(:href => "/TotalRewards/Offers.do?", :text => "Your Offers").click
+        
+        # scrape offers
+        offers = browser.frame(:id => "offerDisplayMod_iframe").divs(:class => "pItem")
+        @offers = {}
+        offers.each do |offer|
+          if offer.span(:class => "lblSubjectOld").exists?
+            name = offer.span(:class => "lblSubjectOld").text
+          else
+            name = offer.span(:class => "lblSub").text
+          end
+          date = offer.div(:class => "expwidth").text
+          
+          @offers[name] = date
+        end
+        
+        @offers.each do |key, value|
+          value.chomp!
+          expiration = value[-10..-1]
+          expiration = DateTime.strptime(expiration, '%m/%d/%Y')
+          today = Date.today
+          @offers[key] = expiration.mjd - today.mjd
+        end
+        
+        
+        browser.close
+      end
+      
       
     end
     

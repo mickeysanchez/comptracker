@@ -5,8 +5,11 @@
   <%= @user.email %>
 </p>
 
+<p> ---- </p>
+
+
 <p>
-	<strong>Accounts:</strong>
+	<strong>Accounts You've Registered:</strong>
 </p>
 
 
@@ -16,21 +19,30 @@
   </p>
 <% else %>
   <% @accounts.each do |account| %>
-     <p> Account Type: <%= account.type_of_account%>
-		 Username: <%= account.username %>
-	     Password: <%= account.password_digest%> 
+     <p> <%= account.type_of_account%>  ::
+		 Username: <%= account.username %>  ::
+	     Password: <%= account.password_digest%>  :: 
 	 	 <%= link_to '<< Delete this account', account, :method=>:delete, :class=>:destroy, data: {confirm: "Delete this account?"} %></p>
   <% end %>
 <% end %>
 
-<p> ---- </p>
-
-
-<%= @part %> 
-<%= @fields %> 
-
-<p> ---- </p>
 <p> <%= link_to 'Add casino account', new_account_path %> </p>
+
+<p> ---- </p>
+
+<div>
+	<strong>Offers available at Harrah's, Bally's, Caesars, or Showboat:</strong> 
+</div>
+
+<% @offers.each do |key, value| %> 
+	<div>
+		<%= "#{key}  :: Expires in #{value} days." %>
+
+	</div>
+<% end %>
+
+<p> ---- </p>
+
 <p> <%= link_to 'Sign out', signout_path, method: "delete" %>
 <p> <%= link_to 'Delete my account', current_user, :method=>:delete, :class=>:destroy, data: {confirm: "Are you sure?"} %>
  </p>

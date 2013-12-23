@@ -20,7 +20,10 @@ Models:
 		
 TODO:
 
-1. make it so signed in user can't see all users OR other users pages
+1. Some questions:
+
+	- how do you use ENV variables to hide important stuff?
+	- how do you use web workers? - RESQUE?
 
 
 

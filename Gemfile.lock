@@ -70,7 +70,6 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.15.1)
-    phantomjs (1.9.2.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -151,7 +150,6 @@ DEPENDENCIES
   nokogiri
   passenger
   pg (= 0.15.1)
-  phantomjs
   rails (= 4.0.0)
   rails_12factor (= 0.0.2)
   sass-rails (= 4.0.0)
