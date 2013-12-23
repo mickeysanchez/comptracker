@@ -1,9 +1,11 @@
-A app for my mom to track all the comps she gets at casinos:
+A app to track all your comps at casinos in Atlantic City. For my retired parents. 
 
-What to do:
+Basically creating a webscraper that logs into all these casino rewards accounts, and retrieves all the comp info,
+then parses the dates so it can send you an email when something is about to expire.
 
-Models:
+Currently uses Watir-Webdriver w/ phantomjs. It's working, but sort of iffy. 
 
+<<<<<<< HEAD
 	1. USERS -> username(email) + password (has_secure_password)
 	   has_many -> accounts
 	   
@@ -28,3 +30,6 @@ TODO:
 
 
 FINISHED LAST SESH AT 10.27
+=======
+Going to try Capybara w/ Poltergeist when I try again. 
+>>>>>>> a0884b5cb3bbc258e35dd524b5d5ae6645042c55
