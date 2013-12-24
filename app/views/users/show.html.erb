@@ -7,7 +7,6 @@
 
 <p> ---- </p>
 
-
 <p>
 	<strong>Accounts You've Registered:</strong>
 </p>
@@ -30,32 +29,23 @@
 
 <p> ---- </p>
 
-<% if @total_rewards_comps != nil %>
+<% if @accounts.any? {|account| account.type_of_account == "Total Rewards"}%>
 	<div>
 		<strong>Comps available at Harrah's, Bally's, Caesars, or Showboat:</strong> 
 	</div>
-
-	<% @total_rewards_comps.each do |key, value| %> 
-		<div>
-			<%= "#{key}  :: Expires in #{value} days." %>
-
-		</div>
-	<% end %>
-	
+	<%= link_to("show comps", :remote => true) %>
+	<div id="totalrewardscomps">
+		+++
+	</div>
 <%end%>
 
 <% if @borgata_comps != nil %>
 	<div>
 		<strong>Comps available at Borgata:</strong> 
 	</div>
-
-	<% @borgata_comps.each do |key, value| %> 
-		<div>
-			<%= "#{key}  :: Expires in #{value} days." %>
-
-		</div>
-	<% end %>
-	
+	<div id="borgatarewardscomps">
+	  <%= render 'borgatarewards'%>	
+    </div>
 <%end%>
 
 <p> ---- </p>
