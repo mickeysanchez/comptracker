@@ -33,18 +33,19 @@
 	<div>
 		<strong>Comps available at Harrah's, Bally's, Caesars, or Showboat:</strong> 
 	</div>
-	<%= link_to("show comps", :remote => true) %>
 	<div id="totalrewardscomps">
-		+++
-	</div>
+		<div id="loadicon"><%= image_tag("loader.gif")%></div>
+		<%= link_to "", "#{@user.id}/get_total_rewards_comps", :remote=> true, id: "load_total_rewards" %>
+	    </div>
 <%end%>
 
-<% if @borgata_comps != nil %>
+<% if @accounts.any? {|account| account.type_of_account == "Borgata Rewards"} %>
 	<div>
 		<strong>Comps available at Borgata:</strong> 
 	</div>
-	<div id="borgatarewardscomps">
-	  <%= render 'borgatarewards'%>	
+	<div id="borgatacomps">
+	<div id="loadicon"><%= image_tag("loader.gif")%></div>
+	<%= link_to "", "#{@user.id}/get_borgata_comps", :remote=> true, id: "load_borgata_comps" %>
     </div>
 <%end%>
 
@@ -53,3 +54,10 @@
 <p> <%= link_to 'Sign out', signout_path, method: "delete" %>
 <p> <%= link_to 'Delete my account', current_user, :method=>:delete, :class=>:destroy, data: {confirm: "Are you sure?"} %>
  </p>
+
+ <script>
+ 
+ $(document).ready(function(){ $('a#load_total_rewards').first().click(); });
+ $(document).ready(function(){ $('a#load_borgata_comps').first().click(); });
+ 
+ </script

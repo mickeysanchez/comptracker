@@ -4,7 +4,10 @@ Comptracker::Application.routes.draw do
   resources :accounts, only: [:new, :create, :destroy]
   
   root "static_pages#home"
-  get "users/new"
+
+  get "users/:id/get_total_rewards_comps", to: "users#get_total_rewards_comps"
+  get "users/:id/get_borgata_comps", to: "users#get_borgata_comps"
+  
   match "/signup", to: "users#new", via: "get"
   match "/signin", to: "sessions#new", via: "get"
   match "/signout", to: "sessions#destroy", via: "delete"
