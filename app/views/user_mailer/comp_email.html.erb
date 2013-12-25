@@ -1,0 +1,19 @@
+<% if @accounts.any? {|account| account.type_of_account == "Total Rewards"}%>
+	<div>
+		<strong>Comps available at Harrah's, Bally's, Caesars, or Showboat:</strong> 
+	</div>
+	<div id="totalrewardscomps">
+		<div id="loadicon"><%= image_tag("loader.gif")%></div>
+		<%= link_to "", "#{@user.id}/get_total_rewards_comps", :remote=> true, id: "load_total_rewards" %>
+	    </div>
+<%end%>
+
+<% if @accounts.any? {|account| account.type_of_account == "Borgata Rewards"} %>
+	<div>
+		<strong>Comps available at Borgata:</strong> 
+	</div>
+	<div id="borgatacomps">
+	<div id="loadicon"><%= image_tag("loader.gif")%></div>
+	<%= link_to "", "#{@user.id}/get_borgata_comps", :remote=> true, id: "load_borgata_comps" %>
+    </div>
+<%end%>

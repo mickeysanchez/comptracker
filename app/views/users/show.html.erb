@@ -49,6 +49,8 @@
     </div>
 <%end%>
 
+<%= link_to "send comp email", "#{@user.id}/send_comps_email", :method=>:post%>
+
 <p> ---- </p>
 
 <p> <%= link_to 'Sign out', signout_path, method: "delete" %>
@@ -59,5 +61,7 @@
  
  $(document).ready(function(){ $('a#load_total_rewards').first().click(); });
  $(document).ready(function(){ $('a#load_borgata_comps').first().click(); });
+
+
  
  </script

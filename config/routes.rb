@@ -7,6 +7,7 @@ Comptracker::Application.routes.draw do
 
   get "users/:id/get_total_rewards_comps", to: "users#get_total_rewards_comps"
   get "users/:id/get_borgata_comps", to: "users#get_borgata_comps"
+  match "users/:id/send_comps_email", to: "users#send_comps_email", via: "post"
   
   match "/signup", to: "users#new", via: "get"
   match "/signin", to: "sessions#new", via: "get"

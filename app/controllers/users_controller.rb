@@ -86,6 +86,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @accounts = @user.accounts
     
+    # Check and wait until watir / phantomjs is done with other requests
+    browsers = []
+    ObjectSpace.each_object(Watir::Browser) {|b| browsers << b}
+    p browsers
+    p browsers.any? {|b| b.exists?}
+    Watir::Wait.until { (browsers.any? {|b| b.exists?}) == false }
+    
     # set up and initialize Watir and Phantomjs in a way that works for the Borgata page.
     switches = ['--ignore-ssl-errors=yes']
     browser = Watir::Browser.new :phantomjs, :args => switches
@@ -172,7 +179,12 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   
-
+  def send_comps_email
+    @user = User.find(params[:id])
+    UserMailer.comp_email(@user).deliver
+    redirect_to @user
+  end
+  
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

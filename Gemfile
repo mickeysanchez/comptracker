@@ -11,6 +11,8 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'watir-webdriver'
 
+# gem "resque", "~> 2.0.0.pre.1"
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '3.0.1'
 # Use Phusion Passenger as the App server.
