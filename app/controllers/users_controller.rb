@@ -78,6 +78,7 @@ class UsersController < ApplicationController
     browser.close
     
     respond_to do |format|
+      format.html
       format.js
     end
   end
