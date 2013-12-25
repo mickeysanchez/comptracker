@@ -37,14 +37,10 @@ Comptracker::Application.configure do
   #   # :domain => 'http://fathomless-ravine-2270.herokuapp.com', # your domain to identify your server when connecting
   # }
   
-  config.action_mailer.perform_deliveries = true 
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-   authentication: "plain",
+    authentication: "plain",
     enable_starttls_auto: true,
     user_name: "sanchez.mickey@gmail.com",
     password: "wwf183900"
