@@ -1,6 +1,9 @@
 ActionMailer::Base.smtp_settings = {
-  :address     => "smtp.mandrillapp.com",
-  :port        => "587",
-  :user_name   => "app18973717@heroku.com",
-  :password    => "Or4njRU39MbZfdSYZMuxww",
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
 }
+ActionMailer::Base.delivery_method = :smtp
