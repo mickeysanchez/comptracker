@@ -168,6 +168,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
+    cookies.delete(:remember_token)
     redirect_to root_url
   end
   
