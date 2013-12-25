@@ -26,8 +26,8 @@ module Comptracker
       port: 587,
       authentication: "plain",
       enable_starttls_auto: true,
-      user_name: "sanchez.mickey@gmail.com",
-      password: "wwf183900"
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
     }
   end
 end
