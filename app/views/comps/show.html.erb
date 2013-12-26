@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @comp.user_id %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @comp.account_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @comp.description %>
+</p>
+
+<p>
+  <strong>Expiration:</strong>
+  <%= @comp.expiration %>
+</p>
+
+<p>
+  <strong>Days until expiration:</strong>
+  <%= @comp.days_until_expiration %>
+</p>
+
+<%= link_to 'Edit', edit_comp_path(@comp) %> |
+<%= link_to 'Back', comps_path %>

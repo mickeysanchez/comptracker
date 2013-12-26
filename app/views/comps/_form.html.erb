@@ -1,0 +1,37 @@
+<%= form_for(@comp) do |f| %>
+  <% if @comp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comp.errors.count, "error") %> prohibited this comp from being saved:</h2>
+
+      <ul>
+      <% @comp.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :account_id %><br>
+    <%= f.number_field :account_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :expiration %><br>
+    <%= f.text_field :expiration %>
+  </div>
+  <div class="field">
+    <%= f.label :days_until_expiration %><br>
+    <%= f.text_field :days_until_expiration %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<h1>Listing comps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Account</th>
+      <th>Description</th>
+      <th>Expiration</th>
+      <th>Days until expiration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comps.each do |comp| %>
+      <tr>
+        <td><%= comp.user_id %></td>
+        <td><%= comp.account_id %></td>
+        <td><%= comp.description %></td>
+        <td><%= comp.expiration %></td>
+        <td><%= comp.days_until_expiration %></td>
+        <td><%= link_to 'Show', comp %></td>
+        <td><%= link_to 'Edit', edit_comp_path(comp) %></td>
+        <td><%= link_to 'Destroy', comp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comp', new_comp_path %>

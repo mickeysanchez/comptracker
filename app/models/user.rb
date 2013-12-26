@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :accounts, dependent: :destroy
+  has_many :comps, :through => :accounts
   before_save { email.downcase! }
   before_create :create_remember_token
   

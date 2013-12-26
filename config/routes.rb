@@ -1,4 +1,6 @@
 Comptracker::Application.routes.draw do
+  resources :comps
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :accounts, only: [:new, :create, :destroy]
