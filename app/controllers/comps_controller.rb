@@ -40,25 +40,12 @@ class CompsController < ApplicationController
   # PATCH/PUT /comps/1
   # PATCH/PUT /comps/1.json
   def update
-    respond_to do |format|
-      if @comp.update(comp_params)
-        format.html { redirect_to @comp, notice: 'Comp was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @comp.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /comps/1
   # DELETE /comps/1.json
   def destroy
     @comp.destroy
-    respond_to do |format|
-      format.html { redirect_to comps_url }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -71,4 +58,6 @@ class CompsController < ApplicationController
     def comp_params
       params.require(:comp).permit(:user_id, :account_id, :description, :expiration, :days_until_expiration)
     end
+    
+    
 end
