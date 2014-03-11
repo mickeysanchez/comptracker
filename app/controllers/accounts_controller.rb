@@ -68,7 +68,7 @@ class AccountsController < ApplicationController
     browser = total_rewards_browser
 
     total_rewards_account = current_user.accounts.find_by(:type_of_account => "Total Rewards")
-    navigate_to_total_rewards_offers(browser)
+    navigate_to_total_rewards_offers(browser, total_rewards_account)
    
     @total_rewards_comps = scrape_total_rewards(browser)
     
